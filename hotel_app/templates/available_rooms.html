@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Rooms Information</title>
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+        .footer {
+            background-color: #00695c;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .card-image img {
+            height: 200px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h4 class="center-align">Hotel Rooms Information</h4>
+    <br>
+
+    <!-- Search and Filter Form -->
+    <form method="GET" action="{% url 'available_rooms' %}" class="row">
+        <!-- Search by Room Description -->
+        <div class="input-field col s12 m3">
+            <input type="text" id="search" name="q" value="{{ request.GET.q }}" placeholder="Search by room description">
+            <label for="search">Search Rooms</label>
+        </div>
+
+        <!-- Filter by Room Type -->
+        <div class="input-field col s12 m3">
+            <select name="type" class="materialize-select">
+                <option value="" disabled selected>Choose room type</option>
+                <option value="SQN" {% if request.GET.type == 'SQN' %}selected{% endif %}>Single Queen</option>
+                <option value="SKN" {% if request.GET.type == 'SKN' %}selected{% endif %}>Single King</option>
+                <option value="DQN" {% if request.GET.type == 'DQN' %}selected{% endif %}>Double Queen</option>
+                <option value="DKN" {% if request.GET.type == 'DKN' %}selected{% endif %}>Double King</option>
+                <option value="SKS" {% if request.GET.type == 'SKS' %}selected{% endif %}>Suite King</option>
+            </select>
+            <label>Filter by Room Type</label>
+        </div>
+
+        <!-- Minimum Price -->
+        <div class="input-field col s6 m3">
+            <input type="number" id="min_price" name="min_price_per_night" value="{{ min_price_per_night }}" step="0.01" placeholder="Min Price">
+            <label for="min_price">Min Price</label>
+        </div>
+
+        <!-- Maximum Price -->
+        <div class="input-field col s6 m3">
+            <input type="number" id="max_price" name="max_price_per_night" value="{{ max_price_per_night }}" step="0.01" placeholder="Max Price">
+            <label for="max_price">Max Price</label>
+        </div>
+
+        <!-- Filter Button -->
+        <div class="input-field col s12 center-align">
+            <button type="submit" class="btn waves-effect waves-light teal">Filter Rooms</button>
+        </div>
+    </form>
+
+    <!-- Rooms Display -->
+    <div class="row">
+        {% for room in rooms %}
+        <div class="col s12 m6 l4">
+            <div class="card">
+                <!-- Room Image -->
+                <div class="card-image">
+                    {% if room.image %}
+                        <img src="{{ room.image.url }}" alt="Room Image">
+                    {% else %}
+                        <img src="https://via.placeholder.com/200" alt="Default Room Image">
+                    {% endif %}
+                </div>
+
+                <!-- Room Information -->
+                <div class="card-content">
+                    <span class="card-title">Room {{ room.room_num }} - {{ room.get_room_type_display }}</span>
+                    <p><strong>Capacity:</strong> {{ room.room_capacity }} guests</p>
+                    <p><strong>Details:</strong> {{ room.details }}</p>
+                    <p><strong>Availability:</strong> {% if room.is_available %}Available{% else %}Not Available{% endif %}</p>
+                </div>
+
+                <!-- Price and Booking Action -->
+                <div class="card-action">
+                    <p><small class="grey-text">Price per night: ${{ room.price_per_night }}</small></p>
+                    <!-- Book Now Button for Available Rooms -->
+                    {% if request.user.is_superuser and room.is_available %}
+
+                            <a href="{% url 'mark_room_not_active' room.id %}" class="btn waves-effect waves-light red">Make Room Inactivate</a>
+                                <br><br>
+                        <a href="{% url 'reserve_room' room.id %}" class="btn waves-effect waves-light teal">Book Now</a>
+                    {% elif room.mark_not_active %}
+                        <p class="red-text">Room is not active</p>
+                    {% elif not room.is_available %}
+                        <p class="red-text">Room already booked</p>
+                    {% else %}
+                        <a href="{% url 'reserve_room' room.id %}" class="btn waves-effect waves-light teal">Book Now</a>
+                        {% if request.user.is_superuser %}
+                            <a href="{% url 'reserve_room' room.id %}" class="btn waves-effect waves-light teal">Make Room Inactivate</a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        {% empty %}
+        <p class="center-align">No rooms available based on your search criteria.</p>
+        {% endfor %}
+
+        <div class="center-align print-button">
+        {% if request.user.is_superuser %}
+        <a href="/hotel/admin/home/" class="btn waves-effect waves-light grey" >Back to Home</a>
+        {% else %}
+             <a href="/hotel/customer/home/" class="btn waves-effect waves-light grey">Back to Home</a>
+        {% endif %}
+
+    </div>
+    </div>
+</div>
+
+<!-- Footer Section -->
+<div class="footer">
+    <p>&copy; 2024 Hotel Reservation System. Created by Siva Rupendra, Venkata Bhargav & Bala Hari Vishnu.</p>
+</div>
+
+<!-- Materialize JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    // Initialize Materialize select fields
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select.materialize-select');
+        M.FormSelect.init(elems);
+    });
+</script>
+</body>
+</html>

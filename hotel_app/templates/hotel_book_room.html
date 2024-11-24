@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserve Room {{ room.number }}</title>
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+        .footer {
+            background-color: #00695c;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .btn-custom {
+            width: 200px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Page Heading -->
+    <h4 class="center-align">Reserve Room {{ room.number }} - {{ room.get_room_type_display }}</h4>
+    <p class="center-align">Fill in your details to reserve the room.</p>
+    <br>
+
+    <!-- Reservation Form -->
+    <form method="post">
+        {% csrf_token %}
+
+        <!-- Display each form field using Materialize CSS classes -->
+        {% for field in form %}
+            <div class="input-field">
+                {{ field.label_tag }}
+                {{ field }}
+                {% for error in field.errors %}
+                    <span class="helper-text red-text">{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+        <div class="center-align">
+            <button type="submit" class="btn waves-effect waves-light teal btn-custom">Reserve Now</button>
+        </div>
+    </form>
+</div>
+
+<!-- Footer Section -->
+<div class="footer">
+    <p>&copy; 2024 Hotel Reservation System. Created by Siva Rupendra, Venkata Bhargav & Bala Hari Vishnu.</p>
+</div>
+
+<!-- Materialize JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

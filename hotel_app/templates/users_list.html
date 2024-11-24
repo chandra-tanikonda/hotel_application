@@ -1,0 +1,37 @@
+<!-- service_list.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Users List</h2>
+    <br>
+    {% if users %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+              <th scope="col">Mobile Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <th scope="row">{{ user.counter }}</th>
+                <td>{{ user.first_name }}</td>
+                <td>${{ user.last_name }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.username }}</td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="text-center">No Users available</p>
+    {% endif %}
+</div>
+{% endblock %}

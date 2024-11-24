@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Confirmation</title>
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        .container {
+            margin-top: 50px;
+            max-width: 1200px;
+        }
+        .footer {
+            background-color: #00695c;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .reservation-header {
+            color: #00796b;
+            font-size: 2em;
+        }
+        .btn-custom {
+            background-color: #00796b;
+            margin-top: 20px;
+        }
+        .service-item {
+            background-color: #e0f2f1;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Reservation Confirmation Header -->
+    <div class="center-align">
+        <h4 class="reservation-header">Reservation Confirmation</h4>
+        <p>Thank you for choosing our services! Below are the details of your reservation.</p>
+    </div>
+
+    <!-- Reservation Details Table -->
+    <table class="highlight responsive-table">
+        <!-- Booking Information -->
+        <tbody>
+            <tr>
+                <th>Room Number & Type</th>
+                <td>{{ booking.room.number }} - {{ booking.room.get_room_type_display }}</td>
+            </tr>
+            <tr>
+                <th>Check-in & Check-out Dates</th>
+                <td>{{ booking.date_in|date:"F d, Y" }} - {{ booking.date_out|date:"F d, Y" }}</td>
+            </tr>
+            <tr>
+                <th>Nightly Rate</th>
+                <td>${{ booking.room.price_per_night }} </td>
+            </tr>
+
+            <!-- Additional Services Section -->
+            {% if booking_services %}
+            <tr>
+                <th colspan="2" class="center-align">Additional Services</th>
+            </tr>
+            {% for service in booking_services %}
+            <tr>
+                <td>
+                    <div class="service-item">{{ service.extra_service.name }} (Qty: {{ service.count }})</div>
+                </td>
+                <td>$ {{ service.extra_service.rate_per_night }}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+
+            <!-- Total Cost -->
+            <tr>
+                <th>Total Cost</th>
+                <td>${{total_cost}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Proceed to Payment Button -->
+    <div class="center-align">
+        <a href="{% url 'payment_info' booking.id %}" class="btn waves-effect waves-light btn-custom">Proceed to Payment</a>
+    </div>
+</div>
+
+<!-- Footer Section -->
+<div class="footer">
+    <p>&copy; 2024 Hotel Reservation System. Created by Siva Rupendra, Venkata Bhargav & Bala Hari Vishnu.</p>
+</div>
+
+<!-- Materialize JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

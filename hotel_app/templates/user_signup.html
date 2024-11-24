@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hotel Management</title>
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- Custom styles for this template -->
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding-top: 64px;
+        }
+        .fa {
+            font-size: 50px;
+        }
+        .footer {
+            background-color: #00695c;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col s12 m8 offset-m2">
+            <div class="card-panel">
+                <center>
+                    <i class="fa fa-user teal-text"></i>
+                    <h5 id="form-title" class="teal-text text-darken-4">
+                        {% if "admin" in request.path %}
+                            Create Admin Account
+                        {% else %}
+                            Create User Account
+                        {% endif %}
+
+                    </h5>
+                </center>
+                <form method="post">
+                    {% csrf_token %}
+
+                    <!-- Mobile Number -->
+                    <div class="input-field">
+                        <label for="username">Mobile Number<span class="red-text">*</span></label>
+                        <input type="text" name="username" maxlength="10" required id="username" value="{{ request.user.username }}">
+                    </div>
+
+                    <!-- First Name -->
+                    <div class="input-field">
+                        <label for="first_name">First Name<span class="red-text">*</span></label>
+                        <input type="text" name="first_name" maxlength="60" required id="first_name" value="{{ request.user.first_name }}">
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="input-field">
+                        <label for="last_name">Last Name<span class="red-text">*</span></label>
+                        <input type="text" name="last_name" maxlength="60" required id="last_name" value="{{ request.user.last_name }}">
+                    </div>
+
+                    <!-- Email -->
+                    <div class="input-field">
+                        <label for="email">Email<span class="red-text">*</span></label>
+                        <input type="email" name="email" maxlength="60" required id="email" value="{{ request.user.email }}">
+                    </div>
+
+                    <!-- Password -->
+                    <div class="input-field">
+                        <label for="password">Password<span class="red-text">*</span></label>
+                        <input type="password" name="password" autocomplete="new-password" required id="password">
+                    </div>
+
+                    <!-- Submit Button -->
+                    <center>
+                        {% if "update" in request.path %}
+                            <button type="submit" class="btn waves-effect waves-light">Update Your Profile</button>
+                        {% else %}
+                            <button type="submit" class="btn waves-effect waves-light">Create Account</button>
+                            <p class="center-align">
+                                {% if "user" in request.path %}
+                                    Already have an account? <a href="/hotel/user/login/">Login</a>
+                                {% else %}
+                                    Already have an account? <a href="/hotel/login/">Login</a>
+                                {% endif %}
+                            </p>
+                        {% endif %}
+                    </center>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer Section -->
+<div class="footer">
+    <p>&copy; 2024 Hotel Reservation System. Created by Siva Rupendra, Venkata Bhargav & Bala Hari Vishnu.</p>
+</div>
+
+<!-- Materialize JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a New Hotel Room</title>
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+        .input-field {
+            margin-bottom: 20px;
+        }
+        .footer {
+            background-color: #00695c;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h4 class="center-align">Create a New Room</h4>
+    <p class="center-align grey-text">Use the form below to add a new room to the hotel’s booking system. Include all relevant details such as room type, capacity, price, availability, and an image if available.</p>
+    <br>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- Room Number -->
+        <div class="input-field">
+            <label for="room_num">Room Number</label>
+            <input type="text" id="room_num" name="room_num" required>
+        </div>
+
+        <!-- Room Type -->
+        <div class="input-field">
+            <label for="room_type">Room Type</label>
+            <select id="room_type" name="room_type" class="materialize-select" required>
+                <option value="" disabled selected>Choose your option</option>
+                <option value="SQN">Single Queen</option>
+                <option value="SKN">Single King</option>
+                <option value="DQN">Double Queen</option>
+                <option value="DKN">Double King</option>
+                <option value="SKS">Suite King</option>
+            </select>
+        </div>
+
+        <!-- Room Capacity -->
+        <div class="input-field">
+            <label for="room_capacity">Room Capacity</label>
+            <input type="number" id="room_capacity" name="room_capacity" required>
+        </div>
+
+        <!-- Price Per Night -->
+        <div class="input-field">
+            <label for="price_per_night">Price Per Night</label>
+            <input type="number" id="price_per_night" name="price_per_night" step="0.01" required>
+        </div>
+
+        <!-- Availability -->
+        <div class="input-field">
+            <label>
+                <input type="checkbox" name="is_available" checked>
+                <span>Available</span>
+            </label>
+        </div>
+
+        <!-- Image Upload -->
+        <div class="file-field input-field">
+            <div class="btn">
+                <span>Upload Image</span>
+                <input type="file" name="image">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text" placeholder="Upload room image">
+            </div>
+        </div>
+
+        <!-- Room Details -->
+        <div class="input-field">
+            <label for="details">Room Details</label>
+            <textarea id="details" name="details" class="materialize-textarea"></textarea>
+        </div>
+
+        <div class="center-align">
+            <button type="submit" class="btn waves-effect waves-light teal">Add Room</button>
+        </div>
+    </form>
+</div>
+
+<!-- Footer Section -->
+<div class="footer">
+    <p>&copy; 2024 Hotel Reservation System. Created by Siva Rupendra, Venkata Bhargav & Bala Hari Vishnu.</p>
+</div>
+
+<!-- Materialize JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    // Initialize Materialize select fields
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select.materialize-select');
+        M.FormSelect.init(elems);
+    });
+</script>
+</body>
+</html>

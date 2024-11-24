@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Services</title>
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+        .footer {
+            background-color: #00695c;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h4 class="center-align">List of Available Services</h4>
+    <p class="center-align grey-text">Below is the list of all services currently offered by the hotel.</p>
+    <br>
+
+    {% if services %}
+    <table class="highlight centered responsive-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Service Name</th>
+                <th>Price per Night</th>
+                <th>Created</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for service in services %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ service.name }}</td>
+                <td>${{ service.rate_per_night }}</td>
+                <td>{{service.created_at}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    {% else %}
+    <p class="center-align">No services are available at the moment.</p>
+    {% endif %}
+
+    <div class="center-align">
+        <a class="btn waves-effect waves-light teal" href="/hotel/add/service/">Add Service</a>
+    </div>
+    <br><br>
+    <div class="center-align print-button">
+        {% if request.user.is_superuser %}
+        <a href="/hotel/admin/home/" class="btn waves-effect waves-light grey" >Back to Home</a>
+        {% else %}
+             <a href="/hotel/customer/home/" class="btn waves-effect waves-light grey">Back to Home</a>
+        {% endif %}
+
+    </div>
+</div>
+
+<!-- Footer Section -->
+<div class="footer">
+    <p>&copy; 2024 Hotel Reservation System. Created by Siva Rupendra, Venkata Bhargav & Bala Hari Vishnu.</p>
+</div>
+
+<!-- Materialize JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

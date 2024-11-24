@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Profile</title>
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+        .footer {
+            background-color: #00695c;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h4 class="center-align">Update Profile</h4>
+    <p class="center-align grey-text">Modify your profile information below and click "Save Changes" to update.</p>
+    <br>
+
+    <form method="post" action="{% url 'update_profile' %}">
+        {% csrf_token %}
+
+        <!-- First Name -->
+        <div class="input-field">
+            <input type="text" id="first_name" name="first_name" value="{{ user.first_name }}" required>
+            <label for="first_name">First Name</label>
+        </div>
+
+        <!-- Last Name -->
+        <div class="input-field">
+            <input type="text" id="last_name" name="last_name" value="{{ user.last_name }}" required>
+            <label for="last_name">Last Name</label>
+        </div>
+
+        <!-- Email -->
+        <div class="input-field">
+            <input type="email" id="email" name="email" value="{{ user.email }}" required>
+            <label for="email">Email</label>
+        </div>
+
+        <!-- Phone Number (Username) -->
+        <div class="input-field">
+            <input type="text" id="username" name="username" value="{{ user.username }}" required>
+            <label for="username">Phone Number</label>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="center-align">
+            <button type="submit" class="btn waves-effect waves-light teal">Save Changes</button>
+            <a href="/hotel/admin/home/" class="btn waves-effect waves-light grey">Cancel</a>
+        </div>
+    </form>
+</div>
+
+<!-- Footer Section -->
+<div class="footer">
+    <p>&copy; 2024 Hotel Reservation System. Created by Siva Rupendra, Venkata Bhargav & Bala Hari Vishnu.</p>
+</div>
+
+<!-- Materialize JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

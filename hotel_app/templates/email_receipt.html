@@ -1,0 +1,19 @@
+<!-- email_receipt.html -->
+
+<p>Dear {{ booking.user.first_name }},</p>
+
+<p>Thank you for choosing our hotel. Here are the details of your booking:</p>
+
+<ul>
+    <li>Booking ID: {{ booking.id }}</li>
+    <li>Room Number: {{ booking.room.number }}</li>
+    <li>Room Type: {{ booking.room.get_room_type_display }}</li>
+    <li>Check-in Date: {{ booking.date_in }}</li>
+    <li>Check-out Date: {{ booking.date_out }}</li>
+    <li>Total price_per_night: ${{ total_cost }}</li>
+</ul>
+
+<p>If you have any questions about your booking, please contact us.</p>
+
+<p>Best regards,</p>
+<p>Your Hotel Team</p>

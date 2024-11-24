@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Payment Details</title>
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+        .footer {
+            background-color: #00695c;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header and Message -->
+    <h4 class="center-align">Update Your Payment Details</h4>
+    <p class="center-align grey-text">We need your payment details to make booking and payment processes smoother.</p>
+
+    <!-- Payment Update Form -->
+    <form method="post" action="{% url 'update_payment' %}" class="card-panel">
+        {% csrf_token %}
+
+        <!-- Name on Card -->
+        <div class="input-field">
+            <label for="name_on_card">Name on Card</label>
+            <input type="text" id="name_on_card" name="name_on_card" value="{{ payment_detail.name_on_card }}" required>
+        </div>
+
+        <!-- Card Type -->
+        <div class="input-field">
+            <label for="card_type">Card Type</label>
+            <input type="text" id="card_type" name="card_type" value="{{ payment_detail.card_type }}" required>
+        </div>
+
+        <!-- Card Number -->
+        <div class="input-field">
+            <label for="card_number">Card Number</label>
+            <input type="text" id="card_number" name="card_number" value="{{ payment_detail.card_number }}" required>
+        </div>
+
+        <!-- Expiration Month -->
+        <div class="input-field">
+            <label for="exp_month">Expiration Month</label>
+            <input type="number" id="exp_month" name="exp_month" value="{{ payment_detail.exp_month }}" min="1" max="12" required>
+        </div>
+
+        <!-- Expiration Year -->
+        <div class="input-field">
+            <label for="exp_year">Expiration Year</label>
+            <input type="number" id="exp_year" name="exp_year" value="{{ payment_detail.exp_year }}" required>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="center-align">
+            <button type="submit" class="btn waves-effect waves-light teal">Update Payment</button>
+        </div>
+    </form>
+</div>
+
+<!-- Footer Section -->
+<div class="footer">
+    <p>&copy; 2024 Hotel Reservation System. Created by Siva Rupendra, Venkata Bhargav & Bala Hari Vishnu.</p>
+</div>
+
+<!-- Materialize JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

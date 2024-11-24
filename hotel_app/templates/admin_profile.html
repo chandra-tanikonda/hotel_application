@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+        .profile-card {
+            padding: 20px;
+            border-radius: 10px;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid #e0e0e0;
+        }
+        .footer {
+            background-color: #00695c;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Page Heading -->
+    <h4 class="center-align">Admin Profile</h4>
+    <br>
+
+    <!-- Profile Card -->
+    <div class="card profile-card">
+        <div class="card-content">
+            <p><strong>User ID:</strong> {{ request.user.pk }}</p>
+            <br>
+            <hr>
+            <p><strong>First Name:</strong> {{ request.user.first_name }}</p>
+            <br>
+            <hr>
+            <p><strong>Last Name:</strong> {{ request.user.last_name }}</p>
+            <br>
+            <hr>
+            <p><strong>Email:</strong> {{ request.user.email }}</p>
+            <br>
+            <hr>
+            <p><strong>Username:</strong> {{ request.user.username }}</p>
+            <br>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="card-action center-align">
+            {% if request.user.is_staff %}
+                <a href="/hotel/admin/update_profile/" class="btn waves-effect waves-light teal">Update Profile</a>
+                <a href="/hotel/admin/home/" class="btn waves-effect waves-light grey">Back</a>
+            {% else %}
+                <a href="/hotel/customer/home/" class="btn waves-effect waves-light grey">Take Me Back</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Footer Section -->
+<div class="footer">
+    <p>&copy; 2024 Hotel Reservation System. Created by Siva Rupendra, Venkata Bhargav & Bala Hari Vishnu.</p>
+</div>
+
+<!-- Materialize JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

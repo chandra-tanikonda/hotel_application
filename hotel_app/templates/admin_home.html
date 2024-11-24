@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <style>
+        .icon-large {
+            font-size: 40px !important;
+            color: #00796b;
+        }
+        .card-content h5 {
+            font-size: 1.5em;
+            margin-top: 0;
+        }
+        .card-content p {
+            font-size: 0.9em;
+            color: #555;
+        }
+        .feature-card {
+            transition: transform 0.2s ease;
+        }
+        .feature-card:hover {
+            transform: scale(1.05);
+        }
+        .footer {
+            background-color: #00695c;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <div class="section center-align">
+        <i class="fa fa-tachometer-alt icon-large"></i>
+        <h4>Admin Control Panel</h4>
+        <p>Access all tools to manage users, bookings, rooms, and additional services in one place.</p>
+    </div>
+
+    <!-- Features Section -->
+    <div class="row">
+ <div class="col s12 m6 l4">
+            <div class="card feature-card hoverable">
+                <div class="card-content center-align">
+                    <i class="fa fa-user-circle icon-large"></i>
+                    <h5>Admin Profile</h5>
+                    <p>View and manage your profile, ensuring all your admin details are current.</p>
+                </div>
+                <div class="card-action center-align">
+                    <a href="/hotel/admin/profile/"  class="btn teal">View Profile</a>
+                </div>
+            </div>
+        </div>
+        <!-- Customer Reservations -->
+        <div class="col s12 m6 l4">
+    <div class="card feature-card hoverable">
+        <div class="card-content center-align">
+            <i class="fa fa-calendar-check icon-large"></i>
+            <h5>Reservations Management</h5>
+            <p>View customer reservations and manage cancellations as needed.</p>
+        </div>
+        <div class="card-action center-align">
+            <a href="/hotel/customer/bookings/"  class="btn teal">Manage Reservations</a>
+        </div>
+    </div>
+</div>
+
+
+        <!-- Check Available Rooms -->
+        <div class="col s12 m6 l4">
+            <div class="card feature-card hoverable">
+                <div class="card-content center-align">
+                    <i class="fa fa-bed icon-large"></i>
+                    <h5>Room Availability</h5>
+                    <p>Check room availability and view room statuses to stay informed on occupancy.</p>
+                </div>
+                <div class="card-action center-align">
+                    <a href="/hotel/all/rooms/" class="btn teal">View Rooms</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add New Room -->
+        <div class="col s12 m6 l4">
+            <div class="card feature-card hoverable">
+                <div class="card-content center-align">
+                    <i class="fa fa-plus-square icon-large"></i>
+                    <h5>Add Room</h5>
+                    <p>Add new rooms to the system, complete with features and nightly rates.</p>
+                </div>
+                <div class="card-action center-align">
+                    <a href="/hotel/add_room/"  class="btn teal">Add Room</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Extra Services -->
+        <div class="col s12 m6 l4">
+            <div class="card feature-card hoverable">
+                <div class="card-content center-align">
+                    <i class="fa fa-concierge-bell icon-large"></i>
+                    <h5>Add Services</h5>
+                    <p>Add additional services for guests, like meals, spa access, and more.</p>
+                </div>
+                <div class="card-action center-align">
+                    <a href="/hotel/add/service"  class="btn teal">Add Services</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12 m6 l4">
+            <div class="card feature-card hoverable">
+                <div class="card-content center-align">
+                    <i class="fa fa-concierge-bell icon-large"></i>
+                    <h5>View Services</h5>
+                    <p>View additional services for guests, like meals, spa access, and more.</p>
+                </div>
+                <div class="card-action center-align">
+                    <a href="/hotel/services/" class="btn teal">View Services</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Profile -->
+
+
+        <!-- Logout -->
+        <div class="col s12 m6 l4">
+            <div class="card feature-card hoverable">
+                <div class="card-content center-align">
+                    <i class="fa fa-sign-out-alt icon-large"></i>
+                    <h5>Logout</h5>
+                    <p>Securely log out of your account after managing admin tasks and information.</p>
+                </div>
+                <div class="card-action center-align">
+                    <a href="/hotel/admin/logout/" class="btn red">Logout</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Footer Section -->
+<div class="footer">
+    <p>&copy; 2024 Hotel Reservation System. Created by Siva Rupendra, Venkata Bhargav & Bala Hari Vishnu.</p>
+</div>
+
+<!-- Materialize JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

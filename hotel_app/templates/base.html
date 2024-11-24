@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Hotel Management{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Optional Bootstrap Theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap.min.css">
+    <!-- Add this in the <head> section of your base.html -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- Custom styles for this template -->
+    <style>
+        body {
+            padding-top: 80px; /* Padding for .navbar-fixed-top */
+        }
+
+        .fa{
+            font-size:50px;
+        }
+        input{
+            margin-bottom:20px;
+        }
+    </style>
+
+    <!-- Head block for extra <head> elements -->
+    {% block head %}{% endblock %}
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <!-- Responsive toggle button for smaller screens -->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- Brand name/logo -->
+                <a class="navbar-brand" href="#" style="color:white;">Hotel Room Booking Project</a>
+            </div>
+            <!-- Navigation links -->
+            <div id="navbar" class="collapse navbar-collapse">
+
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <!-- Container for main content -->
+    <div class="container">
+        <!-- Main block for content -->
+        {% block content %}
+        <!-- Your page content goes here -->
+        {% endblock %}
+    </div>
+
+    <!-- Bootstrap JS and its dependencies -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Block for extra javascript at the end of body -->
+
+
+
+</body>
+</html>

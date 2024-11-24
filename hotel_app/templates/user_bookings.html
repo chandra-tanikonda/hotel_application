@@ -1,0 +1,28 @@
+<!-- user_bookings.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Your Bookings</h2>
+    {% if bookings %}
+        <div class="list-group">
+            {% for booking in bookings %}
+                <a href="#" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Booking #{{ booking.id }}</h5>
+                        <small>Booked on {{ booking.booking_date|date:"F d, Y" }}</small>
+                    </div>
+                    <p class="mb-1">Room {{ booking.room.number }} - {{ booking.room.get_room_type_display }}</p>
+                    <small>Check-in: {{ booking.date_in|date:"F d, Y" }} | Check-out: {{ booking.date_out|date:"F d, Y" }}</small>
+                    <button onclick="window.open('{% url 'print_receipt' booking.id %}');" class="btn btn-secondary btn-sm mt-2">Print Receipt</button>
+
+
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>You have no bookings.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Profile</title>
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+        .footer {
+            background-color: #00695c;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .btn-custom {
+            width: 150px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h4 class="center-align">Update Your Profile</h4>
+    <p class="center-align">Please update your information below to keep your profile up to date.</p>
+
+    <div class="row">
+        <form method="post" class="col s12 m8 offset-m2">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="input-field">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% for error in field.errors %}
+                        <span class="helper-text red-text">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            <!-- Submit Button -->
+            <div class="center-align">
+                <button type="submit" class="btn waves-effect waves-light teal btn-custom">Update Profile</button>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+<!-- Footer Section -->
+<div class="footer">
+    <p>&copy; 2024 Hotel Reservation System. Created by Siva Rupendra, Venkata Bhargav & Bala Hari Vishnu.</p>
+</div>
+
+<!-- Materialize JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

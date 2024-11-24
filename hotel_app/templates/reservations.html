@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Reservations</title>
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+        table {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        tr {
+            margin-bottom: 15px;
+        }
+        .footer {
+            background-color: #00695c;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .print-button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Page Header -->
+    <h4 class="center-align">Reservation Details</h4>
+    <p class="center-align grey-text">Below is a summary of all your current and past reservations, including room details and any extra services you have booked.</p>
+
+    {% if bookings_with_services %}
+    <!-- Bookings Table -->
+    <table class="highlight centered responsive-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>User</th>
+                <th>Room Number</th>
+                <th>Room Type</th>
+                <th>Check-In Date</th>
+                <th>Check-Out Date</th>
+                <th>Nightly Rate</th>
+                <th>Total Nights</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking_info in bookings_with_services %}
+            <tr>
+                <td>{{ booking_info.booking.pk }}</td>
+                <td>{{ booking_info.booking.customer }}</td>
+                <td>{{ booking_info.booking.room.room_num }}</td>
+                <td>{{ booking_info.booking.room.get_room_type_display }}</td>
+                <td>{{ booking_info.booking.date_in|date:"F d, Y" }}</td>
+                <td>{{ booking_info.booking.date_out|date:"F d, Y" }}</td>
+                <td>${{ booking_info.booking.room.price_per_night }}</td>
+                <td>{{ booking_info.booking.calculate_total_nights }}</td>
+                <td>{{ booking_info.booking.is_active|yesno:"Active,Inactive" }}</td>
+            </tr>
+            <tr>
+                <td colspan="9">
+                    <strong>Extra Services:</strong>
+                    <ul>
+                        {% for service in booking_info.booking_services %}
+                        <li>{{ service.extra_service.name }} - Quantity: {{ service.count }}</li>
+                        {% endfor %}
+                    </ul>
+                    <strong>Total Cost for Extra Services:</strong> ${{ booking_info.total_service_cost }}
+                </td>
+            </tr>
+            <tr>
+                <th colspan="9" class="right-align">Grand Total Cost</th>
+                <td class="right-align">
+                    ${{ booking_info.grand_total }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="center-align">Currently, you have no reservations on file. Explore our room offerings and available services to book your next stay with us.</p>
+    {% endif %}
+
+    <!-- Print Button -->
+    {% if bookings_with_services %}
+    <div class="center-align print-button">
+        <button class="btn waves-effect waves-light teal" onclick="window.print()">Print Reservation Summary</button>
+    </div>
+    {% endif %}
+
+    <!-- Navigation Button -->
+    <div class="center-align print-button">
+        {% if request.user.is_superuser %}
+        <a href="/hotel/admin/home/" class="btn waves-effect waves-light grey" >Back to Home</a>
+        {% else %}
+             <a href="/hotel/customer/home/" class="btn waves-effect waves-light grey">Back to Home</a>
+        {% endif %}
+
+    </div>
+</div>
+
+<!-- Footer Section -->
+<div class="footer">
+    <p>&copy; 2024 Hotel Reservation System. Created by Siva Rupendra, Venkata Bhargav & Bala Hari Vishnu.</p>
+</div>
+
+<!-- Materialize JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

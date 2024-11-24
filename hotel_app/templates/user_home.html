@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard</title>
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <style>
+        .icon-large {
+            font-size: 40px !important;
+            color: #00796b;
+        }
+        .card-content h5 {
+            font-size: 1.5em;
+            margin-top: 0;
+        }
+        .card-content p {
+            font-size: 0.9em;
+            color: #555;
+        }
+        .feature-card {
+            transition: transform 0.2s ease;
+        }
+        .feature-card:hover {
+            transform: scale(1.05);
+        }
+        .footer {
+            background-color: #00695c;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <div class="section center-align">
+        <i class="fa fa-tachometer-alt icon-large"></i>
+        <h4>Customer Dashboard</h4>
+        <p>Manage your bookings, profile, and explore available services.</p>
+    </div>
+
+    <!-- Features Section -->
+    <div class="row">
+
+        <!-- View Profile -->
+        <div class="col s12 m6 l4">
+            <div class="card feature-card hoverable">
+                <div class="card-content center-align">
+                    <i class="fa fa-user-circle icon-large"></i>
+                    <h5>View Profile</h5>
+                    <p>Access your profile information, including personal details and preferences.</p>
+                </div>
+                <div class="card-action center-align">
+                    <a href="/user/profile/" class="btn teal">View Profile</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Update Profile -->
+        <div class="col s12 m6 l4">
+            <div class="card feature-card hoverable">
+                <div class="card-content center-align">
+                    <i class="fa fa-edit icon-large"></i>
+                    <h5>Update Profile</h5>
+                    <p>Modify your personal information to keep your profile up-to-date.</p>
+                </div>
+                <br>
+                <div class="card-action center-align">
+                    <a href="/update/user/profile/" class="btn teal">Edit Profile</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Payment Methods -->
+        <div class="col s12 m6 l4">
+            <div class="card feature-card hoverable">
+                <div class="card-content center-align">
+                    <i class="fa fa-credit-card icon-large"></i>
+                    <h5>Payment Methods</h5>
+                    <p>Manage your saved payment methods to make bookings more convenient.</p>
+                </div>
+                <br>
+                <div class="card-action center-align">
+                    <a href="/payment/details/" class="btn teal">View Payment Methods</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Check Available Rooms -->
+        <div class="col s12 m6 l4">
+            <div class="card feature-card hoverable">
+                <div class="card-content center-align">
+                    <i class="fa fa-bed icon-large"></i>
+                    <h5>Available Rooms</h5>
+                    <p>Explore our available rooms and find the perfect fit for your stay.</p>
+                </div>
+                <div class="card-action center-align">
+                    <a href="/hotel/all/rooms/" class="btn teal">See Rooms</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Current Reservations -->
+        <div class="col s12 m6 l4">
+            <div class="card feature-card hoverable">
+                <div class="card-content center-align">
+                    <i class="fa fa-calendar-check icon-large"></i>
+                    <h5>My Reservations</h5>
+                    <p>Review and manage your ongoing reservations and booking details.</p>
+                </div>
+                <div class="card-action center-align">
+                    <a href="/hotel/customer/bookings/" class="btn teal">View Reservations</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logout -->
+        <div class="col s12 m6 l4">
+            <div class="card feature-card hoverable">
+                <div class="card-content center-align">
+                    <i class="fa fa-sign-out-alt icon-large"></i>
+                    <h5>Logout</h5>
+                    <p>Securely log out from your account after managing your settings and bookings.</p>
+                </div>
+                <div class="card-action center-align">
+                    <a href="/logout" class="btn red">Logout</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+</div>
+
+<!-- Footer Section -->
+<div class="footer">
+    <p>&copy; 2024 Hotel Reservation System. Created by Siva Rupendra, Venkata Bhargav & Bala Hari Vishnu.</p>
+</div>
+
+<!-- Materialize JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Additional Services</title>
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+
+<div class="container">
+    <h4 class="center-align">Enhance Your Reservation with Additional Services</h4>
+    <p class="center-align">Choose from a variety of additional services to make your stay more comfortable.</p>
+
+    <form method="post" action="{% url 'select_services' booking.id %}">
+        {% csrf_token %}
+
+        <div class="row">
+            {% for checkbox in form.services %}
+                <div class="col s12 m6">
+                    <label>
+                        {{ checkbox.tag }}
+                        <span>{{ checkbox.choice_label }}</span>
+                    </label>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="center-align">
+            <button type="submit" class="btn waves-effect waves-light">Add Services</button>
+        </div>
+    </form>
+</div>
+
+<!-- Materialize JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

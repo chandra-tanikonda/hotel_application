@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Payment Processing</title>
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+        .header-title {
+            color: #00796b;
+            font-size: 2em;
+        }
+        .footer {
+            background-color: #00695c;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .table-container {
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Page Header -->
+    <div class="section center-align">
+        <h4 class="header-title">Secure Payment Processing</h4>
+        <p>Enter your payment details to complete the reservation.</p>
+    </div>
+
+    <!-- Reservation Details Table -->
+    <div class="table-container">
+        <table class="highlight centered responsive-table">
+            <thead>
+                <tr>
+                    <th colspan="2" class="center-align"><h5>Reservation Details</h5></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Greeting and Confirmation Message -->
+                <tr>
+                    <td colspan="2" class="center-align">
+                        <h6>Reservation Confirmation</h6>
+                        <p>Your reservation details are confirmed as follows:</p>
+                    </td>
+                </tr>
+                <!-- Booking Details -->
+                <tr>
+                    <th>Room Number & Room Type</th>
+                    <td>{{ booking.room.number }} - {{ booking.room.get_room_type_display }}</td>
+                </tr>
+                <tr>
+                    <th>Check-in Date & Check-out Date</th>
+                    <td>{{ booking.date_in|date:"F d, Y" }} - {{ booking.date_out|date:"F d, Y" }}</td>
+                </tr>
+                <tr>
+                    <th>Nightly Room Rate</th>
+                    <td>${{ booking.total_price_per_night }}</td>
+                </tr>
+                <!-- Additional Services Section -->
+                {% if booking_services %}
+                <tr>
+                    <th colspan="2" class="center-align">Additional Services</th>
+                </tr>
+                {% for service in booking_services %}
+                <tr>
+                    <td>{{ service.extra_service.service_name }} (Quantity: {{ service.count }})</td>
+                    <td class="right-align">${{ service.extra_service.price_per_night }}</td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+                <!-- Total Cost -->
+                <tr>
+                    <th>Total Cost</th>
+                    <td class="right-align">${{ total_cost }} (Includes additional services)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Payment Form -->
+    <form method="post" action="{% url 'payment_info' booking.id %}" class="section">
+        {% csrf_token %}
+        {{ form|crispy }}
+
+        <!-- Submit Button -->
+        <div class="center-align">
+            <button type="submit" class="btn waves-effect waves-light teal">Confirm Payment</button>
+        </div>
+    </form>
+</div>
+
+<!-- Footer Section -->
+<div class="footer">
+    <p>&copy; 2024 Hotel Reservation System. Created by Siva Rupendra, Venkata Bhargav & Bala Hari Vishnu.</p>
+</div>
+
+<!-- Materialize JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

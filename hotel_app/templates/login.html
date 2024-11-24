@@ -1,0 +1,39 @@
+{% extends 'base.html' %}  <!-- Extend from a base template if you have one -->
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container mt-5">
+    <center>
+        <h2>
+        <i class="fa fa-user"></i> <br>
+         <br>
+         {% if "admin" in request.path %}
+            "Admin User Login
+         {% else %}
+            Customer User Login
+         {% endif %}
+
+    </h2>
+    </center>
+
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            {% if "admin" in request.path %}
+            <form method="post" class="mt-3">
+                {% else %}
+                <form method="post" class="mt-3" action="/login/">
+                    {% endif %}
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <center>
+                        <br><br>
+                        <button type="submit" class="btn btn-primary">Secure Login</button>
+                    </center>
+
+                    <br><br>
+                </form>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

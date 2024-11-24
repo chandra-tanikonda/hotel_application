@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Payment Details</title>
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+        .footer {
+            background-color: #00695c;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h4 class="center-align">Your Payment Details</h4>
+    <p class="center-align">Here are the payment methods you have saved in our system.</p>
+
+    <!-- Payment Details Table -->
+    <table class="highlight centered responsive-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name on Card</th>
+                <th>Card Type</th>
+                <th>Card Number</th>
+                <th>Expiration Month</th>
+                <th>Expiration Year</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for detail in payment_details %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ detail.name_on_card }}</td>
+                <td>{{ detail.card_type }}</td>
+                <td>**** **** **** {{ detail.card_number|slice:"-4:" }}</td> <!-- Display last 4 digits only -->
+                <td>{{ detail.exp_month }}</td>
+                <td>{{ detail.exp_year }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">
+                    No payment details available. Please add a payment method in your profile settings.
+                    <br><br>
+
+
+
+                    <a href="/customer/update_payment/" class="btn waves-effect waves-light teal">Add Payment Method</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="center-align" style="margin-top: 20px;">
+        <a href="/hotel/customer/home/" class="btn waves-effect waves-light grey">Back to Dashboard</a>
+    </div>
+</div>
+
+<!-- Footer Section -->
+<div class="footer">
+    <p>&copy; 2024 Hotel Reservation System. Created by Siva Rupendra, Venkata Bhargav & Bala Hari Vishnu.</p>
+</div>
+
+<!-- Materialize JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

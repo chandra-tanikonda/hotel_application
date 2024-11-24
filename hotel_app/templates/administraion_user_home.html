@@ -1,0 +1,67 @@
+{% extends 'base.html' %}  <!-- Extend from a base template if you have one -->
+ {% load crispy_forms_tags %}
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="text-center">Welcome, Admin Dashboard</h1>
+        <div class="row mt-4">
+            <!-- Manage Bookings -->
+
+
+            <!-- Manage Rooms -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">View Rooms</h5>
+                        <p class="card-text">View rooms from the system.</p>
+                        <a href="/available/rooms/" target="_blank" class="btn primary-btn">Go to Rooms</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Add New Rooms</h5>
+                        <p class="card-text">Add new room to the hotel.</p>
+                        <a href="/add-room/" target="_blank" class="btn primary-btn">Add Room</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manage Services -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Manage Services</h5>
+                        <p class="card-text">Manage additional services offered.</p>
+                        <a href="/services/" target="_blank" class="btn primary-btn">Go to Services</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manage Users -->
+            <div class="col-md-4 mt-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Manage Users</h5>
+                        <p class="card-text">Manage user accounts across Hotel.</p>
+                        <a href="/users/" target="_blank" class="btn primary-btn">Go to Users</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mt-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Manage Bookings</h5>
+                        <p class="card-text">View and manage all room bookings.</p>
+                        <a href="/bookings/" target="_blank" class="btn primary-btn">Go to Bookings</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+{% endblock %}
